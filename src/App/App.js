@@ -6,7 +6,8 @@ import ViewUserProfile from "../components/ViewUserProfile"
 import ViewLogin from "../components/ViewLogin"
 import ViewPlayer from "../components/ViewPlayer"
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
+import { Provider } from "react-redux";
+import { store } from "../store";
 // Css
 import './App.css';
 
@@ -36,7 +37,9 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
+      <Provider {...{ store }}>
+        <Router>
+
         <div className="App">
           <NavBar>
               <Link {...{ to: "/"}}>Home</Link>
@@ -56,6 +59,7 @@ class App extends Component {
           </div>
         </div>
       </Router>
+    </Provider>
     );
   }
 }
