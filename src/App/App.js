@@ -8,8 +8,14 @@ import ViewPlayer from "../components/ViewPlayer"
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "../store";
+import { getSongs, getAlbums } from "../actions/server";
 // Css
 import './App.css';
+
+// Getting state from server
+// TODO: Place this logic in the component?
+store.dispatch(getSongs())
+store.dispatch(getAlbums())
 
 class App extends Component {
   constructor(props) {

@@ -1,34 +1,30 @@
+import { createAsyncAction } from "redux-promise-middleware-actions";
+
 export const SERVER_ACTIONS = {
   GET_ALBUMS: "GET_ALBUMS",
   GET_SONGS: "GET_SONGS",
-  GET_SONG_FILE: "GET_SONG_FILE",
 }
 
 /**
  * Action for requesting list of albums to server
  */
-export function getAlbums() {
+export const getAlbums = createAsyncAction(SERVER_ACTIONS.GET_ALBUMS, async () => {
+  const res = await fetch("/albums")
+  const payload = await res.json()
   return {
-    type: SERVER_ACTIONS.GET_ALBUMS
+    type: SERVER_ACTIONS.GET_ALBUMS,
+    payload
   }
-}
+})
 
 /**
  * Action for requesting list of songs to servers
  */
-export function getSongs() {
+export const getSongs = createAsyncAction(SERVER_ACTIONS.GET_SONGS, async () => {
+  const res = await fetch("/songs")
+  const payload = await res.json()
   return {
-    type: SERVER_ACTIONS.GET_SONGS
+    type: SERVER_ACTIONS.GET_SONGS,
+    payload
   }
-}
-
-/**
- * Action for requesting song file to server
- * @param {String} filePath 
- */
-export function getSongFile(filePath) {
-  return {
-    type: SERVER_ACTIONS.GET_SONG_FILE,
-    filePath
-  }
-}
+})

@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+// TODO: Add concurrent and strict mode
 ReactDOM.render(
-  <main>
-    <App />
-  </main>,
+  <StrictMode>
+      <main>
+        <App />
+      </main>
+  </StrictMode>,
 document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
