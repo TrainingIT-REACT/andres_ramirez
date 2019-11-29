@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, lazy, Suspense } from 'react';
 import NavBar from "../components/NavBar"
-import ViewHome from "../components/ViewHome"
-import ViewAlbums from "../components/ViewAlbums"
-import ViewUserProfile from "../components/ViewUserProfile"
-import ViewLogin from "../components/ViewLogin"
-import ViewPlayer from "../components/ViewPlayer"
+const ViewHome = lazy(() => import("../components/ViewHome")) 
+const ViewAlbums = lazy(() => import("../components/ViewAlbums")) 
+const ViewUserProfile = lazy(() => import("../components/ViewUserProfile")) 
+const ViewLogin = lazy(() => import("../components/ViewLogin")) 
+const ViewPlayer = lazy(() => import("../components/ViewPlayer")) 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "../store";
@@ -45,7 +45,6 @@ class App extends Component {
     return (
       <Provider {...{ store }}>
         <Router>
-
         <div className="App">
           <NavBar>
               <Link {...{ to: "/"}}>Home</Link>
@@ -55,13 +54,15 @@ class App extends Component {
               <Link {...{ to: "/player"}}>Player</Link>
           </NavBar>
           <div>
-            <Switch>
-              <Route {...{ path:"/", component: ViewHome, exact: true }}/>
-              <Route {...{ path:"/albums", component: ViewAlbums }}/>
-              <Route {...{ path:"/userProfile", component: ViewUserProfile }}/>
-              <Route {...{ path:"/login", component: ViewLogin }}/>
-              <Route {...{ path:"/player", component: ViewPlayer }}/>
-            </Switch>
+            <Suspense {...{ fallback: "Loading..."}}>
+              <Switch>
+                <Route {...{ path:"/", component: ViewHome, exact: true }}/>
+                <Route {...{ path:"/albums", component: ViewAlbums }}/>
+                <Route {...{ path:"/userProfile", component: ViewUserProfile }}/>
+                <Route {...{ path:"/login", component: ViewLogin }}/>
+                <Route {...{ path:"/player", component: ViewPlayer }}/>
+              </Switch>
+            </Suspense>
           </div>
         </div>
       </Router>

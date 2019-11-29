@@ -1,4 +1,6 @@
-import { createAsyncAction } from "redux-promise-middleware-actions";
+import {
+  createAsyncAction
+} from "redux-promise-middleware-actions";
 
 export const SERVER_ACTIONS = {
   GET_ALBUMS: "GET_ALBUMS",
@@ -9,7 +11,12 @@ export const SERVER_ACTIONS = {
  * Action for requesting list of albums to server
  */
 export const getAlbums = createAsyncAction(SERVER_ACTIONS.GET_ALBUMS, async () => {
-  const res = await fetch("/albums")
+  const res = await fetch("/albums", {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  })
   const payload = await res.json()
   return {
     type: SERVER_ACTIONS.GET_ALBUMS,

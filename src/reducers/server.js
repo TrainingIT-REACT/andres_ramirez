@@ -1,4 +1,3 @@
-//TODO: We need asyncronous libraries for Redux to implement this.
 import { getAlbums, getSongs } from "../actions/server";
 import { chain } from "lodash";
 
