@@ -11,7 +11,7 @@ export const SERVER_ACTIONS = {
  * Action for requesting list of albums to server
  */
 export const getAlbums = createAsyncAction(SERVER_ACTIONS.GET_ALBUMS, async () => {
-  const res = await fetch("/albums", {
+  const res = await fetch("/api/albums", {
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
@@ -28,7 +28,7 @@ export const getAlbums = createAsyncAction(SERVER_ACTIONS.GET_ALBUMS, async () =
  * Action for requesting list of songs to servers
  */
 export const getSongs = createAsyncAction(SERVER_ACTIONS.GET_SONGS, async () => {
-  const res = await fetch("/songs")
+  const res = await fetch("/api/songs")
   const payload = await res.json()
   return {
     type: SERVER_ACTIONS.GET_SONGS,

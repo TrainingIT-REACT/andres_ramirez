@@ -12,7 +12,8 @@ const config = {
       "lodash",
       "redux-promise-middleware",
       "redux-promise-middleware-actions"
-    ]
+    ],
+    sw: "./src/sw.js"
   },
   output: {
     path: path.resolve(__dirname, 'build'),
@@ -41,7 +42,7 @@ const config = {
     contentBase: "./build",
     historyApiFallback: true,
     proxy: {
-      "**": "http://localhost:3001",
+      "/api/**": "http://localhost:3001/**"
     }
   },
   optimization: {

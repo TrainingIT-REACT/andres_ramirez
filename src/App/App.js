@@ -27,25 +27,11 @@ class App extends Component {
     }
   }
 
-  async componentDidMount() {
-    try {
-      const res = await fetch('/albums');
-      const json = await res.json();
-      this.setState((prevState) => ({
-        ...prevState,
-        loading: false,
-        albums: json
-      }));
-    } catch(err) {
-      console.error("Error accediendo al servidor", err);
-    }
-  }
-
   render() {
     return (
       <Provider {...{ store }}>
         <Router>
-        <div className="App">
+        <nav className="App">
           <NavBar>
               <Link {...{ to: "/"}}>Home</Link>
               <Link {...{ to: "/albums"}}>Albums</Link>
@@ -53,7 +39,8 @@ class App extends Component {
               <Link {...{ to: "/userProfile"}}>User Profile</Link>
               <Link {...{ to: "/player"}}>Player</Link>
           </NavBar>
-          <div>
+          </nav>
+          <main>
             <Suspense {...{ fallback: "Loading..."}}>
               <Switch>
                 <Route {...{ path:"/", component: ViewHome, exact: true }}/>
@@ -63,8 +50,7 @@ class App extends Component {
                 <Route {...{ path:"/player", component: ViewPlayer }}/>
               </Switch>
             </Suspense>
-          </div>
-        </div>
+          </main>
       </Router>
     </Provider>
     );
