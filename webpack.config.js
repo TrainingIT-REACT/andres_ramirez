@@ -1,5 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+// Needed for Service Worker
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const config = {
   entry: {
@@ -36,7 +38,8 @@ const config = {
     new HtmlWebpackPlugin({
       template: 'public/index.html',
       filename: 'index.html'
-    })
+    }),
+    new WorkboxPlugin.InjectManifest({ swSrc: "./src/sw.js" })
   ],
   devServer: {
     contentBase: "./build",
