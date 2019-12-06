@@ -6,3 +6,7 @@
 .App h1 {
   text-align: center;
 }
+
+.SongComponent {
+  border: 1px solid lightgray;
+}
