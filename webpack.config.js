@@ -2,6 +2,8 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 // Needed for Service Worker
 const WorkboxPlugin = require('workbox-webpack-plugin');
+// Create Manifest.json dynamically.
+const WebpackPwaManifest = require('webpack-pwa-manifest');
 
 const config = {
   entry: {
@@ -39,7 +41,22 @@ const config = {
       template: 'public/index.html',
       filename: 'index.html'
     }),
-    new WorkboxPlugin.InjectManifest({ swSrc: "./src/sw.js" })
+    new WorkboxPlugin.InjectManifest({ swSrc: "./src/sw.js" }),
+    new WebpackPwaManifest({
+      "name": "Reactify",
+      "short_name": "Reactify",
+      "icons": [
+        {
+          "src": path.resolve("public/favicon.ico"),
+          "sizes": "64x64 32x32 24x24 16x16",
+          "type": "image/x-icon"
+        }
+      ],
+      "start_url": "./?utm_source=pwa",
+      "display": "standalone",
+      "theme_color": "#000000",
+      "background_color": "#ffffff"
+    })
   ],
   devServer: {
     contentBase: "./build",
