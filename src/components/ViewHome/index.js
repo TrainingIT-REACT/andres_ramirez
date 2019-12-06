@@ -14,7 +14,8 @@ function ViewHome() {
   const songs = useSelector(state => state.server.songs);
   return <div {...{ className: "ViewHome"}}>
     {
-      Object.values(songs).map(song => (<SongComponent {...{...song}}/>))
+      Object.values(songs)
+        .map((song, key) => (<SongComponent {...{...song, key }}/>))
     }
   </div>;
 }

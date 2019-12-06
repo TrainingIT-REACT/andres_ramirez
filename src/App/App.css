@@ -7,6 +7,12 @@
   text-align: center;
 }
 
-.SongComponent {
+.SongComponent, .AlbumComponent {
   border: 1px solid lightgray;
+  padding: 8px;
+  margin: 8px;
+}
+
+.ViewHome, .ViewAlbums, .ViewLogin {
+  padding: 8px;
 }

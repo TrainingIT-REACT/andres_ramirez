@@ -1,5 +1,5 @@
 import { getAlbums, getSongs } from "../actions/server";
-import { chain } from "lodash";
+import { keyBy } from "lodash";
 
 const initialState = {
   albums: {},
@@ -13,12 +13,12 @@ export const serverReducer = (state = initialState, action) => {
     case getAlbums.fulfilled.toString():
       return {
         ...state,
-        albums: chain(payload.payload).keyBy("id").value()
+        albums: keyBy(payload.payload, "id")
       }
     case getSongs.fulfilled.toString():
       return {
         ...state,
-        songs: chain(payload.payload).keyBy("id").value()
+        songs: keyBy(payload.payload, "id")
       }
     default:
       return state
