@@ -24,7 +24,7 @@ export const userReducer = (state = initialState, action) => {
       } = action;
       return {
         ...state,
-        properties
+        ...properties
       }
       default:
         return state
