@@ -3,7 +3,9 @@ import {
 } from "../actions/user"
 
 const initialState = {
-  properties: {}
+  properties: {
+    signedIn: false
+  }
 }
 
 /**
