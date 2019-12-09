@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WorkboxPlugin = require('workbox-webpack-plugin');
 // Create Manifest.json dynamically.
 const WebpackPwaManifest = require('webpack-pwa-manifest');
+const CopyPlugin = require("copy-webpack-plugin");
 
 const config = {
   entry: {
@@ -21,7 +22,8 @@ const config = {
   },
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: '[name].[chunkhash:8].js'
+    filename: '[name].[chunkhash:8].js',
+    publicPath: "/"
   },
   module: {
     rules: [
@@ -56,14 +58,17 @@ const config = {
       "display": "standalone",
       "theme_color": "#000000",
       "background_color": "#ffffff"
-    })
+    }),
+    new CopyPlugin([
+      { from: "public", to: "" },
+      { from: "server/static", to: "" }
+    ])
   ],
   devServer: {
     contentBase: "./build",
     historyApiFallback: true,
     proxy: {
-      "/api/**": "http://localhost:3001/**",
-      "/static": "http://localhost:3001/static/**"
+      "/api/**": "http://localhost:3001/**"
     }
   },
   optimization: {

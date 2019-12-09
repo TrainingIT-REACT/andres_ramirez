@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import AlbumComponent from "../AlbumComponent";
 import { useDispatch } from 'react-redux';
 import { getAlbums } from '../../actions/server';
+import { Route, Link } from "react-router-dom";
 
 /**
  * View where all albums are displayed
@@ -29,9 +30,13 @@ function ViewAlbums() {
   return(
     <div {...{ className: "ViewAlbums" }}>
       {
-        albums && Object.values(albums).map((album, key) => 
-          (<AlbumComponent {...{...album, key}}/>))
-      }
+        albums && Object.values(albums).map((album, key) => (
+          <Link {...{ to: `/album/${album.id}`, key}}>
+            <AlbumComponent {...{
+              ...album
+            }}/>
+          </Link>)) 
+          }
     </div>
   )
 }
