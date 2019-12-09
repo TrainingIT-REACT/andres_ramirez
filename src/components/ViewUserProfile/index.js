@@ -1,7 +1,16 @@
 import * as React from "react"
+import { useSelector } from 'react-redux';
 
 function ViewUserProfile() {
-  return <div>ViewUserProfile page</div>;
+
+  const { username } = useSelector(state => state.user)
+
+  return (<div {...{ className: "UserProfile"}}> 
+    <p>
+      <span>Nombre del usuario: </span>
+      <span>{ username } </span>
+    </p>
+  </div>);
 }
 
 export default ViewUserProfile;

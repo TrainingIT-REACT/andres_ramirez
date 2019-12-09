@@ -12,7 +12,8 @@ import { useSelector } from "react-redux";
 function SongComponent({ id, name, audio, seconds, album_id }) {
 
   // Getting album information from Redux Store
-  const { name: albumName, artist } = useSelector(state => state.server.albums[album_id]);
+  const { name: albumName, artist } = 
+    useSelector(state => state.server && state.server.albums[album_id] || "");
 
   return (
     <div {...{ className: "SongComponent"}}>

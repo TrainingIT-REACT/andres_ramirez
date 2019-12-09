@@ -1,6 +1,8 @@
-import * as React from "react"
+import React, { useEffect } from "react"
 import { useSelector } from "react-redux";
 import AlbumComponent from "../AlbumComponent";
+import { useDispatch } from 'react-redux';
+import { getAlbums } from '../../actions/server';
 
 /**
  * View where all albums are displayed
@@ -8,11 +10,26 @@ import AlbumComponent from "../AlbumComponent";
  * @see https://react-redux.js.org/next/api/hooks
  */
 function ViewAlbums() {
+  // Redux dispatch hook
+  // @see https://react-redux.js.org/next/api/hooks#usedispatch
+  const dispatch = useDispatch();
+  // Only fetch when componentDidMount
+  useEffect(() => {
+    // When we are working with promises, it is recommended
+    // to create the async funcion inside and call it immediately
+    // @see https://github.com/facebook/react/issues/14326
+    const asyncGetAlbums = async () => {
+      dispatch(await getAlbums())
+    }
+    asyncGetAlbums()
+  }, [ false ])
+
   const albums = useSelector(state => state.server.albums)
+
   return(
     <div {...{ className: "ViewAlbums" }}>
       {
-        Object.values(albums).map((album, key) => 
+        albums && Object.values(albums).map((album, key) => 
           (<AlbumComponent {...{...album, key}}/>))
       }
     </div>

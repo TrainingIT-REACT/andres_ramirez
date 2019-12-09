@@ -1,6 +1,7 @@
-import * as React from "react"
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux";
 import SongComponent from "../SongComponent";
+import { getSongs, getAlbums } from "../../actions/server"
 
 
 /**
@@ -10,6 +11,20 @@ import SongComponent from "../SongComponent";
  * @see https://react-redux.js.org/next/api/hooks
  */
 function ViewHome() {
+
+  const dispatch = useDispatch()
+
+  // Redux dispatch hook
+  useEffect(() => {
+    // In the main view, we need both songs and albums info.
+    // We fetch them both.
+    const asyncGetServerData = async () => {
+      dispatch(await getSongs())
+      dispatch(await getAlbums())
+    }
+    asyncGetServerData()
+  }, [ false ])
+
   // https://react-redux.js.org/next/api/hooks#useselector-examples
   const songs = useSelector(state => state.server.songs);
   return <div {...{ className: "ViewHome"}}>

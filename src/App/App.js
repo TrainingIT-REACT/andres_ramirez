@@ -8,15 +8,10 @@ const ViewPlayer = lazy(() => import("../components/ViewPlayer"))
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Provider, useSelector } from "react-redux";
 import { store } from "../store";
-import { getSongs, getAlbums } from "../actions/server";
+import { getSongs } from "../actions/server";
 import PrivateRoute from '../components/PrivateRoute';
 // Css
 import './App.css';
-
-// Getting state from server
-// TODO: Place this logic in the component?
-store.dispatch(getSongs())
-store.dispatch(getAlbums())
 
 function App() {
   return (
