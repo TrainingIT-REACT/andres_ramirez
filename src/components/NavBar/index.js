@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 function NavBar({ children }) {
-  return <div>{children}</div>;
+  return <div {...{ className: "NavBar" }}>{children}</div>;
 }
 
 export default NavBar;

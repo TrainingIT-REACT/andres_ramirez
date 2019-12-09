@@ -1,7 +1,12 @@
-import * as React from "react"
+import * as React from "react";
+import { createPortal } from "react-dom";
+
+const playerNode = document.getElementById("player")
 
 function ViewPlayer() {
-  return <div>ViewPlayer page</div>;
+  return (
+    createPortal(<div>ViewPlayer page</div>, playerNode)
+  );
 }
 
 export default ViewPlayer;
