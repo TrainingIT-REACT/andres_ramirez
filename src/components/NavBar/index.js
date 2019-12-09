@@ -1,9 +1,7 @@
-import * as React from "react";
+import * as React from 'react';
 
 function NavBar({ children }) {
-  return <div>
-    { children }
-  </div>;
+  return <div>{children}</div>;
 }
 
 export default NavBar;

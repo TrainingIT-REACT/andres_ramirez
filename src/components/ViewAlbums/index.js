@@ -22,7 +22,7 @@ function ViewAlbums() {
       dispatch(await getAlbums())
     }
     asyncGetAlbums()
-  }, [ false ])
+  }, [dispatch])
 
   const albums = useSelector(state => state.server.albums)
 
