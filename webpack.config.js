@@ -23,6 +23,8 @@ const config = {
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: '[name].[chunkhash:8].js',
+    // Added because I have found this error
+    // https://stackoverflow.com/questions/50275901/react-routing-path-not-working-bundle-not-found
     publicPath: "/"
   },
   module: {

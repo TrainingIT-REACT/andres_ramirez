@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { addListenedSongsToHistory } from "../../actions/history";
+import { playSong } from '../../actions/player';
 
 /**
  * Component used to display Song data
@@ -23,6 +24,7 @@ function SongComponent({ id, name, audio, seconds, album_id }) {
       className: "SongComponent",
       onClick: () => {
         dispatch(addListenedSongsToHistory(id))
+        dispatch(playSong(id))
       }
     }}>
       <div {...{ className: "" }}>{ name }</div>
