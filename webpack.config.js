@@ -7,6 +7,7 @@ const WebpackPwaManifest = require('webpack-pwa-manifest');
 const CopyPlugin = require("copy-webpack-plugin");
 
 const config = {
+  cache: false,
   entry: {
     main: "./src/index.js",
     vendor: [

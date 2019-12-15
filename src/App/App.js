@@ -18,26 +18,26 @@ function App() {
   return (
     <Provider {...{ store }}>
       <Router>
-        <nav className="App">
+        <div className="App">
           <NavBar>
             <Link {...{ to: "/" }}>Home</Link>
             <Link {...{ to: "/albums" }}>Albums</Link>
             <Link {...{ to: "/login" }}>Log In</Link>
             <Link {...{ to: "/userProfile" }}>User Profile</Link>
           </NavBar>
-        </nav>
-        <main>
-          <Suspense {...{ fallback: "Loading..." }}>
-            <Switch>
-              <Route {...{ path: "/", component: ViewHome, exact: true }} />
-              <Route {...{ path: "/albums", component: ViewAlbums }} />
-              <Route {...{ path: "/album/:id", component: ViewAlbum }} />
-              <PrivateRoute {...{ path: "/userProfile", component: ViewUserProfile }} />
-              <Route {...{ path: "/login", component: ViewLogin }} />
-            </Switch>
-            <ViewPlayer />
-          </Suspense>
-        </main>
+          <section>
+            <Suspense {...{ fallback: "Loading..." }}>
+              <Switch>
+                <Route {...{ path: "/", component: ViewHome, exact: true }} />
+                <Route {...{ path: "/albums", component: ViewAlbums }} />
+                <Route {...{ path: "/album/:id", component: ViewAlbum }} />
+                <PrivateRoute {...{ path: "/userProfile", component: ViewUserProfile }} />
+                <Route {...{ path: "/login", component: ViewLogin }} />
+              </Switch>
+              <ViewPlayer />
+            </Suspense>
+          </section>
+        </div>
       </Router>
     </Provider>
   );

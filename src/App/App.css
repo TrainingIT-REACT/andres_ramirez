@@ -16,3 +16,7 @@
 .ViewHome, .ViewAlbums, .ViewLogin {
   padding: 8px;
 }
+
+.NavBar > a{
+  padding: 8px;
+}
