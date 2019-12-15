@@ -19,7 +19,7 @@ function AlbumComponent({
         },
       }}
     >
-      <div {...{ className: '' }}>{name}</div>
+      <div {...{ className: '', "data-test": "album-name" }}>{name}</div>
       <div {...{ className: '' }}>{artist}</div>
     </div>
   );

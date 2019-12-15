@@ -25,13 +25,14 @@ function SongComponent({ id, name, audio, seconds, album_id }) {
       onClick: () => {
         dispatch(addListenedSongsToHistory(id))
         dispatch(playSong(id))
-      }
+      },
+      "data-test": "song-component"
     }}>
-      <div {...{ className: "" }}>{ name }</div>
-      <div {...{ className: "" }}>{ audio }</div>
-      <div {...{ className: "" }}>{ seconds }</div>
-      <div {...{ className: "" }}>{ albumName }</div>
-      <div {...{ className: "" }}>{ artist }</div>
+      <div {...{ className: "", "data-test": "song-name" }}>{ name }</div>
+      <div {...{ className: "", "data-test": "audio"}}>{ audio }</div>
+      <div {...{ className: "", "data-test": "seconds" }}>{ seconds }</div>
+      <div {...{ className: "", "data-test": "albumName" }}>{ albumName }</div>
+      <div {...{ className: "", "data-test": "artist" }}>{ artist }</div>
     </div>
   )
 }
